@@ -36,8 +36,6 @@ func selectFieldsRecursively(attributesMap map[string]interface{}, object interf
 			return returnedValues
 		}
 		return nil
-	default:
-		//fmt.Println(o)
 	}
 	return nil
 }

@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test1Attribute(t *testing.T) {
+func TestSelect1Attribute(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
@@ -36,7 +36,7 @@ func Test1Attribute(t *testing.T) {
 	fmt.Println(string(res))
 	assert.JSONEq(t, expectedOutput, string(res))
 }
-func Test2Attributes(t *testing.T) {
+func TestSelect2Attributes(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
@@ -65,7 +65,7 @@ func Test2Attributes(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestWithoutNestedLists(t *testing.T) {
+func TestSelectWithoutNestedLists(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":{"id":1, "color":"red"}},
@@ -94,7 +94,7 @@ func TestWithoutNestedLists(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestWithListOfDifferentObjects(t *testing.T) {
+func TestSelectWithListOfDifferentObjects(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
@@ -123,7 +123,7 @@ func TestWithListOfDifferentObjects(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestWithSingleObjects(t *testing.T) {
+func TestSelectWithSingleObjects(t *testing.T) {
 	input := `
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]}
 	`
@@ -146,7 +146,7 @@ func TestWithSingleObjects(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestShallowAttribute(t *testing.T) {
+func TestSelectShallowAttribute(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
@@ -175,7 +175,7 @@ func TestShallowAttribute(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestNonExistingAttribute(t *testing.T) {
+func TestSelectNonExistingAttribute(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
@@ -199,7 +199,7 @@ func TestNonExistingAttribute(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestPartialMatchingAttribute(t *testing.T) {
+func TestSelectPartialMatchingAttribute(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
@@ -223,7 +223,7 @@ func TestPartialMatchingAttribute(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestBothExistingAndNonExistingAttribute(t *testing.T) {
+func TestSelectBothExistingAndNonExistingAttribute(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
@@ -252,7 +252,7 @@ func TestBothExistingAndNonExistingAttribute(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestNullInput(t *testing.T) {
+func TestSelectNullInput(t *testing.T) {
 	input := `null`
 	attributes := []string{"cores", "parts/id"}
 	expectedOutput := `null`
@@ -271,7 +271,7 @@ func TestNullInput(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestEmptyMapInput(t *testing.T) {
+func TestSelectEmptyMapInput(t *testing.T) {
 	input := `{}`
 	attributes := []string{"cores", "parts/id"}
 	expectedOutput := `null`
@@ -290,7 +290,7 @@ func TestEmptyMapInput(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestEmptyListInput(t *testing.T) {
+func TestSelectEmptyListInput(t *testing.T) {
 	input := `[]`
 	attributes := []string{"cores", "parts/id"}
 	expectedOutput := `null`
@@ -309,7 +309,7 @@ func TestEmptyListInput(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestIntegerInput(t *testing.T) {
+func TestSelectIntegerInput(t *testing.T) {
 	input := `1`
 	attributes := []string{"cores", "parts/id"}
 	expectedOutput := `null`
@@ -328,7 +328,7 @@ func TestIntegerInput(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestStringInput(t *testing.T) {
+func TestSelectStringInput(t *testing.T) {
 	input := `"hello world"`
 	attributes := []string{"cores", "parts/id"}
 	expectedOutput := `null`
@@ -347,7 +347,7 @@ func TestStringInput(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestNestedListInput(t *testing.T) {
+func TestSelectNestedListInput(t *testing.T) {
 	input := `[[[{"id":1, "color":"red"}, {"id":2, "color":"green"}]]]`
 	attributes := []string{"id"}
 	expectedOutput := `[[[{"id":1}, {"id":2}]]]`
@@ -366,7 +366,7 @@ func TestNestedListInput(t *testing.T) {
 	assert.JSONEq(t, expectedOutput, string(res))
 }
 
-func TestEmptyAttributes(t *testing.T) {
+func TestSelectEmptyAttributes(t *testing.T) {
 	input := `
 	[
 	{"id":123, "weight":100, "parts":[{"id":1, "color":"red"}, {"id":2, "color":"green"}]},
